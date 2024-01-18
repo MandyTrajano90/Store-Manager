@@ -1,4 +1,4 @@
-const { productsService } = require('../services');
+const productsService = require('../services/products.service');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 
 const getAll = async (_req, res) => {

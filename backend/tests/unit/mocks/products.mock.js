@@ -53,6 +53,10 @@ const productUnsuccessful = {
   data: notAProductModel,
 };
 
+const newProductDB = { id: 4, name: 'ProdutoX' };
+
+const newProductService = { id: 4, name: 'ProdutoX' };
+
 module.exports = {
   productsDB,
   productsFromModel,
@@ -63,4 +67,6 @@ module.exports = {
   productsSuccessful,
   productSuccessful,
   productUnsuccessful,
+  newProductDB,
+  newProductService,
 };

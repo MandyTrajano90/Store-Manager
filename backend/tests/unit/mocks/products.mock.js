@@ -38,6 +38,21 @@ const notAProductModel = {
   message: 'Product not found',
 };
 
+const productsSuccessful = {
+  status: 'SUCCESS',
+  data: productsFromModel,
+};
+
+const productSuccessful = {
+  status: 'SUCCESS',
+  data: productModel,
+};
+
+const productUnsuccessful = {
+  status: 'NOT_FOUND',
+  data: notAProductModel,
+};
+
 module.exports = {
   productsDB,
   productsFromModel,
@@ -45,4 +60,7 @@ module.exports = {
   productModel,
   notAProductDB,
   notAProductModel,
+  productsSuccessful,
+  productSuccessful,
+  productUnsuccessful,
 };

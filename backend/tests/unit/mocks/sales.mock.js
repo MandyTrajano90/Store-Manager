@@ -67,12 +67,12 @@ const anySaleMessageModel = {
 };
 
 const salesSuccess = {
-  status: 'SUCCESSFUL',
+  status: 'SUCCESS',
   data: salesFromModel,
 };
 
 const saleSuccess = {
-  status: 'SUCCESSFUL',
+  status: 'SUCCESS',
   data: saleFromModel,
 };
 

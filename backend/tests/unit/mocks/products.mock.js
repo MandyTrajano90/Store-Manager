@@ -57,6 +57,16 @@ const newProductDB = { id: 4, name: 'ProdutoX' };
 
 const newProductService = { id: 4, name: 'ProdutoX' };
 
+const createdProductDB = {
+  status: 'CREATED',
+  data: newProductDB,
+};
+
+const createdProductService = {
+  status: 'CREATED',
+  data: newProductService,
+};
+
 module.exports = {
   productsDB,
   productsFromModel,
@@ -69,4 +79,6 @@ module.exports = {
   productUnsuccessful,
   newProductDB,
   newProductService,
+  createdProductDB,
+  createdProductService,
 };

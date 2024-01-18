@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const { productsService } = require('../../../src/services');
-const { productsDB, productsFromModel, productDB, productModel, notAProductModel } = require('../mocks/products.mock');
+const { productsDB, productsFromModel, productDB, productModel, notAProductModel, createdProductDB, createdProductService } = require('../mocks/products.mock');
 const productsModel = require('../../../src/models/products.model');
 
 describe('Testa o service de produtos', function () {
@@ -29,6 +29,14 @@ describe('Testa o service de produtos', function () {
     expect(serviceRes.data).to.be.deep.equal(notAProductModel);
   });
 
+  it('Cria um novo produto com status 201', async function () {
+    sinon.stub(productsModel, 'insertNewProduct').resolves(createdProductDB);
+    const serviceRes = await productsService.insertNewProduct('ProdutoX');
+
+    expect(serviceRes.status).to.equal('CREATED');
+    expect(serviceRes.data).to.be.deep.equal(createdProductService);
+  });
+    
   afterEach(function () {
     sinon.restore();
   });

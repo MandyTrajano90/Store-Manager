@@ -58,9 +58,37 @@ const saleFromModel = [
   },
 ];
 
+const anySaleMessageDB = {
+  message: 'Sale not found',
+};
+
+const anySaleMessageModel = {
+  message: 'Sale not found',
+};
+
+const salesSuccess = {
+  status: 'SUCCESSFUL',
+  data: salesFromModel,
+};
+
+const saleSuccess = {
+  status: 'SUCCESSFUL',
+  data: saleFromModel,
+};
+
+const saleUnsuccessful = {
+  status: 'NOT_FOUND',
+  data: anySaleMessageModel,
+};
+
 module.exports = {
   salesDB,
   salesFromModel,
   saleFromDB,
   saleFromModel,
+  anySaleMessageDB,
+  anySaleMessageModel,
+  salesSuccess,
+  saleSuccess,
+  saleUnsuccessful,
 };

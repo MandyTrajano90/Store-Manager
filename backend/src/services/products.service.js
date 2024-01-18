@@ -15,7 +15,6 @@ const insertNewProduct = async (name) => {
   const newProduct = await productsModel.insertNewProduct(name);
   return { status: 'CREATED', data: newProduct };
 };
-console.log(insertNewProduct('ProdutoX'));
 module.exports = {
   getAll,
   findById,

@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const sinon = require('sinon');
 const connection = require('../../../src/models/connection');
 const { productsModel } = require('../../../src/models');
-const { productsDB, productsFromModel, productDB, productModel, notAProductDB, notAProductModel, newProductDB, newProductService } = require('../mocks/products.mock');
+const { productsDB, productsFromModel, productDB, productModel, notAProductDB, notAProductModel, newProductDB, newProductInsertIdFromDBSuccessful } = require('../mocks/products.mock');
 
 describe('Testa o model de produtos', function () {
   it('Retorna todos os produtos', async function () {
@@ -27,12 +27,11 @@ describe('Testa o model de produtos', function () {
     expect(product).to.be.deep.equal(notAProductModel);
   });
   it('Insere um novo produto', async function () {
-    sinon.stub(connection, 'execute').resolves([newProductDB]);
-    sinon.stub(productsModel, 'findById').resolves(newProductDB);
+    sinon.stub(connection, 'execute').resolves([newProductInsertIdFromDBSuccessful]);
     const product = await productsModel.insertNewProduct('ProdutoX');
 
     expect(product).to.be.an('object');
-    expect(product).to.be.deep.equal(newProductService);
+    expect(product).to.be.deep.equal(newProductDB);
   });
   afterEach(function () {
     sinon.restore();

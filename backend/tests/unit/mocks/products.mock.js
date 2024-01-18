@@ -57,6 +57,8 @@ const newProductDB = { id: 4, name: 'ProdutoX' };
 
 const newProductService = { id: 4, name: 'ProdutoX' };
 
+const newProductInsertIdFromDBSuccessful = { insertId: 4 };
+
 const createdProductDB = {
   status: 'CREATED',
   data: newProductDB,
@@ -81,4 +83,5 @@ module.exports = {
   newProductService,
   createdProductDB,
   createdProductService,
+  newProductInsertIdFromDBSuccessful,
 };

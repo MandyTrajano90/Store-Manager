@@ -3,19 +3,19 @@ const connection = require('./connection');
 const getAll = async () => {
   const [sales] = await connection.execute(`
   SELECT 
-    sale_i "saleId",
+    sale_id "saleId",
     date, 
     product_id "productId", 
     quantity 
-  FROM sales_products 
+  FROM sales 
   INNER JOIN 
-    sales ON id = sale_id`);
+    sales_products ON id = sale_id`);
   return sales;
 };
 
 const findById = async (saleId) => {
   const [sale] = await connection.execute(`
-  SELECT 
+  SELECT
     date,
     product_id "productId",
     quantity

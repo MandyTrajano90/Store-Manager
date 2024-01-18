@@ -18,7 +18,7 @@ describe('Testa o service de vendas', function () {
     const serviceRes = await salesService.findById(1);
 
     expect(serviceRes.status).to.equal('SUCCESS');
-    expect(serviceRes.data).to.be.deep.equal(saleFromModel);
+    expect(serviceRes.data).to.be.deep.equal([saleFromModel]);
   });
 
   it('Testa se não retorna venda inexistente', async function () {

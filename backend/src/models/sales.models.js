@@ -28,7 +28,6 @@ const findById = async (saleId) => {
 };
 
 const createSale = async (products) => {
-  // const [{ productId, quantity }] = product;
   const [sale] = await connection.execute(`
   INSERT INTO sales (date) VALUES (NOW())`);
   const saleId = sale.insertId;

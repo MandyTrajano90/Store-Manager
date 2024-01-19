@@ -69,6 +69,10 @@ const createdProductService = {
   data: newProductService,
 };
 
+const nameValidationMessage = {
+  message: '"name" length must be at least 5 characters long',
+};
+
 module.exports = {
   productsDB,
   productsFromModel,
@@ -84,4 +88,5 @@ module.exports = {
   createdProductDB,
   createdProductService,
   newProductInsertIdFromDBSuccessful,
+  nameValidationMessage,
 };

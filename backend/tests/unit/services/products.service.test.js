@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const { productsService } = require('../../../src/services');
-const { productsDB, productsFromModel, productDB, productModel, notAProductModel, createdProductDB, createdProductService } = require('../mocks/products.mock');
+const { productsDB, productsFromModel, productDB, productModel, notAProductModel, createdProductDB, createdProductService, nameValidationMessage } = require('../mocks/products.mock');
 const productsModel = require('../../../src/models/products.model');
 
 describe('Testa o service de produtos', function () {
@@ -37,6 +37,14 @@ describe('Testa o service de produtos', function () {
     expect(serviceRes.data).to.be.deep.equal(createdProductService);
   });
     
+  it('Retorna uma mensagem de erro caso o nome do produto seja menor que 5 caracteres', async function () {
+    sinon.stub(productsModel, 'insertNewProduct').resolves(undefined);
+    const serviceRes = await productsService.insertNewProduct('Prod');
+
+    expect(serviceRes.status).to.equal('INVALID_VALUE');
+    expect(serviceRes.data).to.be.deep.equal(nameValidationMessage);
+  });
+
   afterEach(function () {
     sinon.restore();
   });

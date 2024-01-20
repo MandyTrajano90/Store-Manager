@@ -15,7 +15,7 @@ const findById = async (saleId) => {
 };
 
 const createSale = async (products) => {
-  const errorValidation = schema.validateSale(products);
+  const { errorValidation } = schema.validateSale(products);
   if (errorValidation) {
     return { status: errorValidation.status, data: { message: errorValidation.message } };
   }

@@ -5,17 +5,27 @@ const productSchema = Joi.object({
 });
 
 const saleSchema = Joi.object({
-  productId: Joi.number().required().integer().min(1)
+  productId: Joi
+    .number()
+    .required()
+    .integer()
+    .min(1)
     .messages({ 
       'number.min': 'Product not found',
       'any.required': '"productId" is required' }),
-  quantity: Joi.number().required().integer().min(1)
+  quantity: Joi
+    .number()
+    .required()
+    .integer()
+    .min(1)
     .messages({ 
       'number.min': '"quantity" must be greater than or equal to 1',
       'any.required': '"quantity" is required',
     }),
 });
+const addSaleSchema = Joi.array().items(saleSchema);
+
 module.exports = {
   productSchema,
-  saleSchema,
+  addSaleSchema,
 };

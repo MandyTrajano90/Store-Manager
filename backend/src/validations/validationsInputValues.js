@@ -1,4 +1,4 @@
-const { productSchema, saleSchema } = require('./schemas');
+const { productSchema, addSaleSchema } = require('./schemas');
 
 const validateProduct = (object) => {
   const { error } = productSchema.validate(object);
@@ -10,7 +10,7 @@ const validateProduct = (object) => {
 };
 
 const validateSale = (object) => {
-  const { error } = saleSchema.validate(object);
+  const { error } = addSaleSchema.validate(object);
   if (error) {
     return { status: error.message.includes('required')
       ? 'BAD_REQUEST' : 'INVALID_VALUE',

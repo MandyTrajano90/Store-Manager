@@ -29,6 +29,13 @@ describe('Testa o service de vendas', function () {
     expect(serviceRes.data).to.be.deep.equal(anySaleMessageModel);
   });
 
+  // it.only('Testa se a função create cria uma venda', async function () {
+  //   sinon.stub(salesModel, 'createSale').resolves([saleFromDB]);
+  //   const serviceRes = await salesService.createSale(saleFromModel);
+
+  //   expect(serviceRes.status).to.equal('SUCCESS');
+  //   expect(serviceRes.data).to.be.deep.equal([saleFromModel]);
+  // });
   afterEach(function () {
     sinon.restore();
   });

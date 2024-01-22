@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const sinon = require('sinon');
 const { productsService } = require('../../../src/services');
-const { productsDB, productsFromModel, productDB, productModel, notAProductModel, createdProductDB, createdProductService, nameValidationMessage } = require('../mocks/products.mock');
+const { productsDB, productsFromModel, productDB, productModel, notAProductModel, createdProductDB, createdProductService, nameValidationMessage, updatedProductDB, updatedProductService, updatedProductResult } = require('../mocks/products.mock');
 const productsModel = require('../../../src/models/products.model');
 
 describe('Testa o service de produtos', function () {
@@ -45,6 +45,23 @@ describe('Testa o service de produtos', function () {
     expect(serviceRes.data).to.be.deep.equal(nameValidationMessage);
   });
 
+  it('Update um produto com status 200', async function () {
+    sinon.stub(productsModel, 'updateProduct').resolves(updatedProductDB);
+    sinon.stub(productsModel, 'findById').resolves(updatedProductResult);
+    const serviceRes = await productsService.updateProduct(2, 'ProdutoX');
+
+    expect(serviceRes.status).to.equal('SUCCESS');
+    expect(serviceRes.data).to.be.deep.equal(updatedProductService);
+  });
+
+  it('Não atualiza um produto que não existe', async function () {
+    sinon.stub(productsModel, 'updateProduct').resolves(undefined);
+    sinon.stub(productsModel, 'findById').resolves(undefined);
+    const serviceRes = await productsService.updateProduct(100, 'ProdutoX');
+
+    expect(serviceRes.status).to.equal('NOT_FOUND');
+    expect(serviceRes.data).to.be.deep.equal(notAProductModel);
+  });
   afterEach(function () {
     sinon.restore();
   });

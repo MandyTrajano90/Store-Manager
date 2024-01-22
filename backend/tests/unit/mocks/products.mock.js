@@ -73,6 +73,24 @@ const nameValidationMessage = {
   message: '"name" length must be at least 5 characters long',
 };
 
+const nameIsRequired = {
+  message: '"name" is required',
+};
+
+const updatedProductDB = {
+  id: 2,
+  name: 'Capa do Batman',
+};
+
+const updatedProductService = {
+  id: 2,
+  name: 'Capa do Batman',
+};
+
+const updatedProductResult = {
+  id: 2,
+  name: 'ProdutoX',
+};
 module.exports = {
   productsDB,
   productsFromModel,
@@ -89,4 +107,8 @@ module.exports = {
   createdProductService,
   newProductInsertIdFromDBSuccessful,
   nameValidationMessage,
+  updatedProductDB,
+  updatedProductService,
+  updatedProductResult,
+  nameIsRequired,
 };

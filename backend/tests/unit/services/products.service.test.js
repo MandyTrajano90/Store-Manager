@@ -62,6 +62,15 @@ describe('Testa o service de produtos', function () {
     expect(serviceRes.status).to.equal('NOT_FOUND');
     expect(serviceRes.data).to.be.deep.equal(notAProductModel);
   });
+
+  it('Deleta um produto com status 204', async function () {
+    sinon.stub(productsModel, 'deleteProduct').resolves({ id: 2, affectedRows: 2 });
+    sinon.stub(productsModel, 'findById').resolves({ id: 2, name: 'Traje de encolhimento' });
+    const serviceRes = await productsService.deleteProduct(2);
+
+    expect(serviceRes.status).to.equal('NO_CONTENT');
+    expect(serviceRes.data).to.be.deep.equal(null);
+  });
   afterEach(function () {
     sinon.restore();
   });

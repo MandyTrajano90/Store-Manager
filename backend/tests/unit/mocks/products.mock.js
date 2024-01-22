@@ -91,6 +91,14 @@ const updatedProductResult = {
   id: 2,
   name: 'ProdutoX',
 };
+
+const deletedProductIdDB = { insertId: 3 };
+
+const deletedProduct = {
+  id: 3,
+  name: 'Escudo do Capitão América',
+};
+
 module.exports = {
   productsDB,
   productsFromModel,
@@ -111,4 +119,6 @@ module.exports = {
   updatedProductService,
   updatedProductResult,
   nameIsRequired,
+  deletedProductIdDB,
+  deletedProduct,
 };

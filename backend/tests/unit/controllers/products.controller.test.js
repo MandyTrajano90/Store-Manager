@@ -140,6 +140,25 @@ describe('Testa o controller de produtos', function () {
     expect(res.status).to.have.been.calledWith(422);
     expect(res.json).to.have.been.calledWith(nameValidationMessage);
   });
+
+  it('Deleta um produto com status 204', async function () {
+    sinon.stub(productsService, 'deleteProduct').resolves({ status: 'NO_CONTENT', data: null });
+
+    sinon.stub(productsService, 'findById').resolves({ id: 2, name: 'Traje de encolhimento' });
+    const req = {
+      params: { id: 2 },
+      body: { },
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+
+    await productsController.deleteProduct(req, res);
+
+    expect(res.status).to.have.been.calledWith(204);
+    expect(res.json).to.have.been.calledWith(null);
+  });
   afterEach(function () {
     sinon.restore();
   });

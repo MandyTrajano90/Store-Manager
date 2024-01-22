@@ -50,6 +50,7 @@ describe('Testa o model de produtos', function () {
     sinon.assert.calledOnce(executeStub);
     expect(executeStub.called).to.equal(true);
   });
+  
   afterEach(function () {
     sinon.restore();
   });

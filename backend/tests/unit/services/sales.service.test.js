@@ -29,13 +29,36 @@ describe('Testa o service de vendas', function () {
     expect(serviceRes.data).to.be.deep.equal(anySaleMessageModel);
   });
 
-  // it.only('Testa se a função create cria uma venda', async function () {
-  //   sinon.stub(salesModel, 'createSale').resolves([saleFromDB]);
-  //   const serviceRes = await salesService.createSale(saleFromModel);
+  it('Testa se a função create cria uma venda', async function () {
+    const expectedData = {
+      id: 15,
+      itemsSold: [
+        { productId: 1, quantity: 1 },
+        { productId: 2, quantity: 5 },
+      ],
+    };
+    sinon.stub(salesModel, 'createSale').resolves(expectedData);
+    sinon.stub(salesModel, 'findById').resolves([{ }]);
 
-  //   expect(serviceRes.status).to.equal('SUCCESS');
-  //   expect(serviceRes.data).to.be.deep.equal([saleFromModel]);
-  // });
+    const inputData = [
+      { productId: 1, quantity: 1 },
+      { productId: 2, quantity: 5 },
+    ];
+    const serviceResponse = await salesService.createSale(inputData);
+
+    expect(serviceResponse.status).to.equal('CREATED');
+    expect(serviceResponse.data).to.be.deep.equal(expectedData);
+  });
+
+  it('Testa se a função delete deleta uma venda', async function () {
+    sinon.stub(salesModel, 'deleteSale').resolves(undefined);
+    sinon.stub(salesModel, 'findById').resolves([{}]);
+
+    const serviceResponse = await salesService.deleteSale(1);
+
+    expect(serviceResponse.status).to.equal('NO_CONTENT');
+    expect(serviceResponse.data).to.equal(null);
+  });
   afterEach(function () {
     sinon.restore();
   });

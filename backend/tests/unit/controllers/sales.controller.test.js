@@ -85,6 +85,46 @@ describe('Testa o controller de vendas', function () {
     expect(res.status).to.have.been.calledWith(200);
     expect(res.json).to.have.been.calledWith(saleFromModel);
   });
+
+  it('Testa se a função create retorna um erro caso o produto não exista', async function () {
+    const req = {
+      params: {},
+      body: {
+        sellerId: 1,
+        productId: 100,
+        quantity: 1,
+      },
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    const next = sinon.stub();
+
+    sinon.stub(salesService, 'createSale').resolves(saleUnsuccessful);
+    await salesController.createSale(req, res, next);
+
+    expect(res.status).to.have.been.calledWith(404);
+    expect(res.json).to.have.been.calledWith(anySaleMessageModel);
+  });
+
+  it('Testa se a função delete retorna um status de sucesso', async function () {
+    const req = {
+      params: { id: 1 },
+      body: {},
+    };
+    const res = {
+      status: sinon.stub().returnsThis(),
+      json: sinon.stub(),
+    };
+    const next = sinon.stub();
+
+    sinon.stub(salesService, 'deleteSale').resolves(saleSuccess);
+    await salesController.deleteSale(req, res, next);
+
+    expect(res.status).to.have.been.calledWith(200);
+    expect(res.json).to.have.been.calledWith(saleFromModel);
+  });
   afterEach(function () {
     sinon.restore();
   }); 
